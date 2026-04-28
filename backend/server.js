@@ -7,14 +7,12 @@ const errorHandler = require('./middleware/errorHandler');
 
 const app = express();
 
-// Middleware
-const corsOptions = {
-  origin: process.env.FRONTEND_URL || '*',
-  credentials: true,
-  methods: ['GET', 'POST', 'PATCH', 'DELETE'],
-  allowedHeaders: ['Content-Type']
-};
-app.use(cors(corsOptions));
+// Middleware - Allow all origins (for debugging)
+app.use(cors({
+  origin: '*',
+  methods: ['GET', 'POST', 'PATCH', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
 app.use(express.json());
 
 // Health check endpoint
