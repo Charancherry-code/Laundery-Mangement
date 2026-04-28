@@ -7,31 +7,11 @@ const errorHandler = require('./middleware/errorHandler');
 
 const app = express();
 
-// Middleware - CORS configuration
-const allowedOrigins = [
-  'https://laundery-mangement.vercel.app',
-  'http://localhost:3000'
-];
-
-// Handle OPTIONS preflight
-app.options('*', cors());
-
+// Middleware - Simple CORS (allow all for now)
 app.use(cors({
-  origin: function(origin, callback) {
-    // Allow requests with no origin (like mobile apps or curl requests)
-    if (!origin) return callback(null, true);
-    if (allowedOrigins.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      console.log('CORS blocked origin:', origin);
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
+  origin: '*',
   methods: ['GET', 'POST', 'PATCH', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
-  credentials: true,
-  preflightContinue: false,
-  optionsSuccessStatus: 204
+  allowedHeaders: ['Content-Type']
 }));
 app.use(express.json());
 
