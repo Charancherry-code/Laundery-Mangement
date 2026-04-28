@@ -7,11 +7,25 @@ const errorHandler = require('./middleware/errorHandler');
 
 const app = express();
 
-// Middleware - Allow all origins (for debugging)
+// Middleware - CORS configuration
+const allowedOrigins = [
+  'https://laundery-mangement.vercel.app',
+  'http://localhost:3000'
+];
+
 app.use(cors({
-  origin: '*',
+  origin: function(origin, callback) {
+    // Allow requests with no origin (like mobile apps or curl requests)
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   methods: ['GET', 'POST', 'PATCH', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization']
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true
 }));
 app.use(express.json());
 
