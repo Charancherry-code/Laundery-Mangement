@@ -1,4 +1,4 @@
-const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000/api/orders';
+const API_BASE_URL = 'https://laundery-app-production.up.railway.app/api/orders';
 
 // Create order
 export const createOrder = async (orderData) => {
