@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import OrderForm from './components/OrderForm';
-import OrdersList from './components/OrdersList';
-import Dashboard from './components/Dashboard';
+import OrderForm from './components/OrderForm.jsx';
+import OrdersList from './components/OrdersList.jsx';
+import Dashboard from './components/Dashboard.jsx';
 import './App.css';
 
 function App() {
