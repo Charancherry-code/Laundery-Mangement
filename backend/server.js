@@ -30,9 +30,17 @@ app.use('/api/orders', orderRoutes);
 app.use(errorHandler);
 
 // Database connection
+if (!process.env.MONGODB_URI) {
+  console.error('ERROR: MONGODB_URI environment variable is not set');
+  process.exit(1);
+}
+
 mongoose.connect(process.env.MONGODB_URI)
   .then(() => console.log('MongoDB connected'))
-  .catch(err => console.error('MongoDB connection error:', err));
+  .catch(err => {
+    console.error('MongoDB connection error:', err);
+    process.exit(1);
+  });
 
 // Start server
 const PORT = process.env.PORT || 5000;
