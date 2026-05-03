@@ -1,6 +1,6 @@
 # Laundry Order Management System
 
-A complete, minimal, production-like Laundry Order Management System built with Node.js, Express, MongoDB, and React.
+A complete, minimal, production-like Laundry Order Management System built with Node.js, Express, MongoDB, and React...
 
 ## Features
 
